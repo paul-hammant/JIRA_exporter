@@ -48,7 +48,7 @@ All this on the Mac.
 9. Run the script
 
     ```
-    ./exportJira.sh THE_NEW_GH_REPO_NAME OUR_JIRA_PROJECT_CODE HIGHEST_ISSUE_NUM
+    ./exportJira.sh THE_NEW_GH_REPO_NAME YOUR_JIRA_PROJECT_CODE HIGHEST_ISSUE_NUM
     ```
 
     Take your hands off the computer while it works. Yes it's slow.

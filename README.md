@@ -6,12 +6,12 @@ All this on the Mac.
 
 1. Do and export for env var 'SIKULIXAPI_JAR'
 
-You may have to go get sikulixapi-1.1.0-SNAPSHOT.jar from https://oss.sonatype.org/service/local/repositories/snapshots/content/com/sikulix/sikulixapi/1.1.0-SNAPSHOT/sikulixapi-1.1.0-20150116.001551-75.jar
+    You may have to go get sikulixapi-1.1.0-SNAPSHOT.jar from https://oss.sonatype.org/service/local/repositories/snapshots/content/com/sikulix/sikulixapi/1.1.0-SNAPSHOT/sikulixapi-1.1.0-20150116.001551-75.jar
 
-I found it in my local Maven repo:
+    I found it in my local Maven repo:
 
     ``` bash
-    export SIKULIXAPI_JAR=/Users/YOUR_MAC_USER_NAME/.m2/repository/com/sikulix/sikulixapi/1.1.0-SNAPSHOT/sikulixapi-1.1.0-SNAPSHOT.jar
+    export SIKULIXAPI_JAR=/path/to/that/jar/sikulixapi-1.1.0-SNAPSHOT.jar
     ```
 
 2. Install JRuby

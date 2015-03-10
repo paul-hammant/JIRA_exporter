@@ -90,6 +90,12 @@ find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e 's#\?page=com.a
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e "s#https://jira.codehaus.org/browse/${PROJ}-#/${GH_REPO}/#g" {}
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e "s#https://jira.codehaus.org/browse/${PROJ}#/${GH_REPO}/index.html#g" {}
 
+touch .nojekyll
+
+# couldn't get this working. I mean I could but 
+# gh-pages broke during the push as I must have 
+# done something wrong with the symlinks.
+
 #fdupes -r -1 . > ../dupes.txt
 #while ((i++)); read -r line 
 #do 

@@ -54,15 +54,21 @@ GH_REPO="$1"
 PROJ="$2"
 MAXNUM="$3"
 
+# in case you have to manually restart...
+#for num in {700..770}
+
 for num in $(seq 1 $MAXNUM)
 do
-	get_page_and_unzip "https://jira.codehaus.org/browse/${PROJ}-${num}" "$baseDir/work/${num}" "${num}"
+	get_page_and_unzip "https://jira.codehaus.org/browse/${PROJ}-${num}" "$baseDir/work/${num}" "${num}" 
     kill_header "${num}"
     kill_temporal_bits "${num}"
     kill_navigation_aids "${num}"
 done
 
-get_page_and_unzip "https://jira.codehaus.org/browse/${PROJ}-${MAXNUM}?jql=project%20%3D%20${PROJ}" "$baseDir/work/INDEX" "INDEX"
+
+get_page_and_unzip "https://jira.codehaus.org/sr/jira.issueviews:searchrequest-printable/temp/SearchRequest.html?jqlQuery=project+%3D+${PROJ}&tempMax=1000" "$baseDir/work/INDEX" "INDEX" 
+
+# get_page_and_unzip "https://jira.codehaus.org/browse/${PROJ}-${MAXNUM}?jql=project%20%3D%20${PROJ}" "$baseDir/work/INDEX" "INDEX"
 
 mv INDEX/index.html .
 mv INDEX/index_files .

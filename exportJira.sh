@@ -80,13 +80,19 @@ kill_navigation_aids .
 
 rm -rf $(ack -l "<h1>Issue Does Not Exist</h1>" | sed 's/index.html//' | xargs)
 
+# Still used?
 perl -pi -e 's#<header id="header"#<header id="header" role="banner">Note: JIRA Issues exported from Codehaus - Mar 2015</header><header id="headerO"#' index.html
+
+# hide a few things, as interactivity has gone now.
 perl -pi -e 's/class="list-ordering"/class="list-ordering" style="display:none"/g' index.html
 perl -pi -e 's/class="aui-page-header-actions"/class="aui-page-header-actions" style="display:none"/g' index.html
 perl -pi -e 's/style="width: 200px;" class="navigator-sidebar/style="width: 200px; display:none" class="navigator-sidebar/g' index.html
 perl -pi -e 's/class="navigator-search"/class="navigator-search" style="display:none"/g' index.html
 perl -pi -e 's/class="saved-search-selector"/class="saved-search-selector" style="display:none"/g' index.html
+perl -pi -e 's/id="previous-view"/id="previous-view" style="display:none"/g' index.html
 
+
+# Remove some things that change per page rendition (and would make repeated saving have noisy diffs)
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e 's#\?page=com.atlassian.jira.plugin.system.issuetabpanels:worklog-tabpanel##g' {}
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e 's#\?page=com.atlassian.jira.plugin.system.issuetabpanels:changehistory-tabpanel##g' {}
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e 's#\?page=com.atlassian.streams.streams-jira-plugin:activity-stream-issue-tab##g' {}
@@ -96,11 +102,15 @@ find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e 's#\?page=com.a
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e "s#https://jira.codehaus.org/browse/${PROJ}-#/${GH_REPO}/#g" {}
 find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e "s#https://jira.codehaus.org/browse/${PROJ}#/${GH_REPO}/index.html#g" {}
 
+# Remove orphaned > that's the result of some other sed operation that wasn't quite right.
+perl -p -i -e 's/^>$//' `find ./ -name *.html`
+
 touch .nojekyll
 
 # couldn't get this working. I mean I could but 
 # gh-pages broke during the push as I must have 
 # done something wrong with the symlinks.
+# Some guy said it was possoble though - https://github.com/Sidnicious/gh-pages-symlink-test
 
 #fdupes -r -1 . > ../dupes.txt
 #while ((i++)); read -r line 

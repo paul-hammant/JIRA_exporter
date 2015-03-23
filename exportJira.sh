@@ -107,6 +107,19 @@ perl -p -i -e 's/^>$//' `find ./ -name *.html`
 
 touch .nojekyll
 
+find . -name "index.html" -print0 | xargs -0 -I {} tidy5 {} 2> /dev/null | grep "jira.codehaus.org/secure/attachment/" | grep "^\"http" | grep "\"$" | cut -d'"' -f2 | sed '/fileAttachment.fileNameUrlEncoded/d' | uniq > filesToDownLoad.txt
+
+while ((i++)); read -r url; do
+	toFile=$(echo "$url" | sed 's#https://jira.codehaus.org/secure/##')
+	mkdir -p $(dirname "${toFile}")
+	curl -o "${toFile}" "${url}"
+
+done < filesToDownLoad.txt
+
+rm filesToDownLoad.txt
+
+find . -name "index.html" -print0 | xargs -0 -I {} perl -p -i -e "s#https://jira.codehaus.org/secure/attachment#/${GH_REPO}/attachment#g" {}
+
 # couldn't get this working. I mean I could but 
 # gh-pages broke during the push as I must have 
 # done something wrong with the symlinks.

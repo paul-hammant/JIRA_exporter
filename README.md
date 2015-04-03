@@ -4,14 +4,13 @@ Download JIRA project to static site suitable for Github Pages deplyment. Bye by
 
 All this on the Mac.
 
-1. Do and export for env var 'SIKULIXAPI_JAR'
 
-    You may have to go get sikulixapi-1.1.0-SNAPSHOT.jar from https://oss.sonatype.org/service/local/repositories/snapshots/content/com/sikulix/sikulixapi/1.1.0-SNAPSHOT/sikulixapi-1.1.0-20150116.001551-75.jar
+1. Get the Java Jars for Sikulix 
 
-    I found it in my local Maven repo:
+    Go read http://paulhammant.com/2015/02/21/playing-with-sikuli-for-desktop-automation/ and do the git clone, and 'mvn install' for that. It'll bring down many Jars from Maven for you. Then set an export:
 
     ``` bash
-    export SIKULIXAPI_JAR=/path/to/that/jar/sikulixapi-1.1.0-SNAPSHOT.jar
+    export SIKULIXAPI_JAR=~/.m2/repository/com/sikulix/sikulixapi/1.1.0-SNAPSHOT/sikulixapi-1.1.0-SNAPSHOT.jar
     ```
 
 2. Install JRuby
@@ -23,17 +22,22 @@ All this on the Mac.
 3. Install the Gem that's in the repo
 
     ``` bash
-    gem install sikulix-1.1.0.3.gem
+    jruby -S gem install sikulix-1.1.0.3.gem
     ```
 
 4. Make a repo
 
-    And note it's name. 
+    Don't make a README
 
-    Make a Github-pages site to it (see in the settings for the project)
-    Make sure to delete all the content and push it back, after you've run through the wizard. Shame you HAVE to choose a template.
+    Make it a Github-pages site to it - see in the settings for the project - follow the wizard for automatic site creation.
 
-5. commit and push it back to the gh-pages branch
+    Make sure to note the repository's name. 
+
+5. Clone / purge the default content / push that back
+
+    Clone it, and make sure to delete all the default content that Github makes for you, and push it back, after you've run through the wizard. It is a shame you HAVE to choose a theme in Github-Pages - I'd like a "no theme".
+
+    Commit and push it back to the gh-pages branch
 
 6. Install the MAFF plugin into Firefox.
 
@@ -47,11 +51,19 @@ All this on the Mac.
 
 9. Run the script
 
+    Note - this is the first time you'll need to have cloned this repo.
+
     ```
     ./exportJira.sh THE_NEW_GH_REPO_NAME YOUR_JIRA_PROJECT_CODE HIGHEST_ISSUE_NUM
     ```
 
-    Take your hands off the computer while it works. Yes it's slow.
+    e.g.
+
+    ```
+    ./exportJira.sh Old_XStream_Issues XSTR 769
+    ```
+
+    Take your hands off the computer while this is running. After Firefox stops changing, there's still a few minutes left. Yes it's slow.
 
 10. cd into work and do a 'git init'
 
@@ -59,7 +71,7 @@ All this on the Mac.
 
     Make sure and switch to the gh-pages branch
 
-    Add all the content, commit and push. 
+    Add all the content, commit and push. You might have had to pull first, of course.
 
 12. Enjoy your site. 
 

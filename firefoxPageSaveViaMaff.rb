@@ -17,7 +17,15 @@ s.type(Key.ENTER)
 sleep 2
 # Wait for page to complete loading
 p = Pattern("tabFullyLoaded.png")
-s.wait(p.similar(0.8), 24).click()
+s.wait(p.similar(0.8), 50).click()
+# Expand activities, if needed
+begin
+  act = s.find("act.png")
+  act.setTargetOffset(10, 0)
+  act.click()
+  sleep 1
+rescue
+end
 # Make sure "All Activities" is clicked. May be redundant. May not be visible in the page. May not even be in the page.
 begin
   all = s.find("activtyHeading.png")

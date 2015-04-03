@@ -19,13 +19,7 @@ All this on the Mac.
     brew install jruby
     ```
 
-3. Install the Gem that's in the repo
-
-    ``` bash
-    jruby -S gem install sikulix-1.1.0.3.gem
-    ```
-
-4. Make a repo
+3. Make a repo
 
     Don't make a README
 
@@ -33,25 +27,34 @@ All this on the Mac.
 
     Make sure to note the repository's name. 
 
-5. Clone / purge the default content / push that back
+4. Clone / purge the default content / push that back
 
     Clone it, and make sure to delete all the default content that Github makes for you, and push it back, after you've run through the wizard. It is a shame you HAVE to choose a theme in Github-Pages - I'd like a "no theme".
 
     Commit and push it back to the gh-pages branch
 
-6. Install the MAFF plugin into Firefox.
+5. Install the MAFF plugin into Firefox.
 
     [https://addons.mozilla.org/en-us/firefox/addon/mozilla-archive-format/](https://addons.mozilla.org/en-us/firefox/addon/mozilla-archive-format/)
 
-7. Work out the highest bug number for your JIRA project.
+6. Work out the highest bug number for your JIRA project.
 
-8. Launch Firefox
+7. Launch Firefox
+
+    The size of the window is import - make it as long as you can, even if it is not full width.
 
     Click somewhere within it to take away that blue effect on the URL field.
 
-9. Run the script
+8. Install the Gem that's in the repo
 
     Note - this is the first time you'll need to have cloned this repo.
+
+    ``` bash
+    jruby -S gem install sikulix-1.1.0.3.gem
+    ```
+
+9. Run the script
+
 
     ```
     ./exportJira.sh THE_NEW_GH_REPO_NAME YOUR_JIRA_PROJECT_CODE HIGHEST_ISSUE_NUM

@@ -70,7 +70,7 @@ All this on the Mac.
 
 10. cd into work and do a 'git init'
 
-11.  Add the remote for the github pages repo.
+11. Add the remote for the github pages repo.
 
     Make sure and switch to the gh-pages branch
 
